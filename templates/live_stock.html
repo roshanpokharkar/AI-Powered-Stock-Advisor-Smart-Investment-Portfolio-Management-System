@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Stock Price</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Live Stock Price</h2>
+
+    <div class="card">
+      <p><b>User:</b> {{ user }}</p>
+    </div>
+
+    <br>
+
+    {% if error %}
+      <div class="card" style="color:red;">
+        {{ error }}
+      </div>
+      <br>
+    {% endif %}
+
+    <form action="/live-stock" method="post">
+      <label>Enter Stock Symbol</label>
+      <input type="text" name="symbol" placeholder="e.g. IBM, AAPL, MSFT" required>
+      <button type="submit">Get Live Price</button>
+    </form>
+
+    {% if stock %}
+      <br>
+      <div class="card">
+        <p><b>Symbol:</b> {{ stock.symbol }}</p>
+        <p><b>Current Price:</b> {{ stock.price }}</p>
+        <p><b>Open:</b> {{ stock.open }}</p>
+        <p><b>High:</b> {{ stock.high }}</p>
+        <p><b>Low:</b> {{ stock.low }}</p>
+        <p><b>Previous Close:</b> {{ stock.previous_close }}</p>
+        <p><b>Change:</b> {{ stock.change }}</p>
+        <p><b>Change %:</b> {{ stock.change_percent }}</p>
+        <p><b>Volume:</b> {{ stock.volume }}</p>
+        <p><b>Latest Trading Day:</b> {{ stock.latest_day }}</p>
+      </div>
+    {% endif %}
+
+    <div class="links">
+      <a href="/dashboard">Dashboard</a> |
+      <a href="/history">History</a> |
+      <a href="/calculator">Portfolio Calculator</a> |
+      <a href="/profile">Profile</a> |
+      <a href="/logout">Logout</a>
+    </div>
+
+    <footer>
+      © 2026 Stock Advisor System | Developed by Your Name
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome, {{ user }} 👋</h2>
+
+    <div class="card">
+      <p style="margin:0;">Enter your investment details to get a smart recommendation.</p>
+    </div>
+
+    <br>
+
+    <form action="/recommend" method="post">
+      <label>Monthly Income</label>
+      <input type="number" name="income" required>
+
+      <label>Risk Level</label>
+      <select name="risk" required>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+
+      <label>Duration</label>
+      <select name="duration" required>
+        <option>Short Term</option>
+        <option>Long Term</option>
+      </select>
+
+      <label>Goal</label>
+      <input type="text" name="goal" placeholder="Wealth / Retirement" required>
+
+      <button type="submit">Get Recommendation</button>
+    </form>
+
+    <div class="links">
+     <a href="/profile">Profile</a> |
+<a href="/history">History</a> |
+<a href="/calculator">Portfolio Calculator</a> |
+<a href="/live-stock">Live Stock Price</a> |
+<a href="/logout">Logout</a>
+    </div>
+
+    <footer>
+      © 2026 Stock Advisor System | Developed by Your Name
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head><title>History</title></head>
+<body>
+  <h2>My Recommendation History</h2>
+  <p>User: <b>{{ user }}</b></p>
+
+  {% if rows|length == 0 %}
+    <p>No history found.</p>
+  {% else %}
+    <table border="1" cellpadding="8">
+      <tr>
+        <th>Date</th>
+        <th>Income</th>
+        <th>Risk</th>
+        <th>Duration</th>
+        <th>Goal</th>
+        <th>Recommendation</th>
+      </tr>
+      {% for r in rows %}
+      <tr>
+        <td>{{ r['created_at'] }}</td>
+        <td>{{ r['income'] }}</td>
+        <td>{{ r['risk'] }}</td>
+        <td>{{ r['duration'] }}</td>
+        <td>{{ r['goal'] }}</td>
+        <td>{{ r['recommendation'] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+  <br>
+  <a href="/dashboard">Back to Dashboard</a> |
+  <a href="/logout">Logout</a>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Investment Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Investment Analysis Report</h2>
+
+    <div class="card">
+      <p><b>User:</b> {{ user }}</p>
+      <p><b>Recommended Plan:</b> {{ recommendation }}</p>
+      <p><b>Risk Score:</b> {{ risk_score }}/100</p>
+      <p><b>Expected Annual Return:</b> {{ expected_return }}</p>
+    </div>
+
+    <br>
+
+    <div class="card">
+      <h3 style="text-align:center;">Risk Distribution</h3>
+      <canvas id="riskChart"></canvas>
+    </div>
+
+    <br>
+
+    <div class="links">
+      <a href="/dashboard">Back to Dashboard</a> |
+      <a href="/history">View History</a> |
+      <a href="/calculator">Portfolio Calculator</a> |
+      <a href="/logout">Logout</a>
+    </div>
+
+    <footer style="text-align:center; margin-top:20px; font-size:12px; color:#777;">
+      © 2026 Stock Advisor System | Developed by Your Name
+    </footer>
+  </div>
+
+  <script>
+const riskScore = Number("{{ risk_score }}");
+const safeScore = 100 - riskScore;
+
+const ctx = document.getElementById('riskChart');
+
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Risk', 'Safe'],
+    datasets: [{
+      data: [riskScore, safeScore],
+      backgroundColor: ['#ff4d4d', '#4CAF50']
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+</script>
+</body>
+</html>
